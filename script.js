@@ -142,19 +142,49 @@ const games = {
   "game-card-dr": { universeId: 8373331401 },
 };
 
-function animateCount(element, end, duration) {
-  const start = parseInt(element.textContent.replace(/,/g, "")) || 0;
+const activeAnimations = new WeakMap();
+
+function animateCount(element, end, duration, { onlyIncrease = false } = {}) {
+  const prev = activeAnimations.get(element);
+  if (prev) prev.cancel = true;
+
+  const stored = element.dataset.value
+    ? parseInt(element.dataset.value, 10)
+    : null;
+  const shown = parseInt(element.textContent.replace(/,/g, ""), 10) || 0;
+  let start = Number.isFinite(stored) ? stored : shown;
+
+  if (onlyIncrease && end < start) {
+    end = start;
+  }
+
   const range = end - start;
-  let startTime = null;
+  if (range === 0 || duration <= 0) {
+    element.dataset.value = String(end);
+    element.textContent = end.toLocaleString();
+    return;
+  }
 
-  function step(currentTime) {
-    if (!startTime) startTime = currentTime;
-    const progress = Math.min((currentTime - startTime) / duration, 1);
-    const currentValue = Math.floor(progress * range + start);
-    element.textContent = currentValue.toLocaleString();
+  const state = { cancel: false };
+  activeAnimations.set(element, state);
 
-    if (progress < 1) {
+  const startTime = performance.now();
+
+  function step(now) {
+    if (state.cancel) return;
+
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - (1 - t) * (1 - t);
+    const val = Math.round(start + range * eased);
+
+    element.dataset.value = String(val);
+    element.textContent = val.toLocaleString();
+
+    if (t < 1) {
       requestAnimationFrame(step);
+    } else {
+      element.dataset.value = String(end);
+      element.textContent = end.toLocaleString();
     }
   }
 
@@ -190,9 +220,24 @@ async function fetchGameStats() {
           const visits = card.querySelector(".stat-item:nth-child(2) span");
           const favorites = card.querySelector(".stat-item:nth-child(3) span");
 
-          animateCount(playerCount, gameData.playing, 1500);
-          animateCount(visits, gameData.visits, 1500);
-          animateCount(favorites, gameData.favoritedCount, 1500);
+          const nextPlaying = gameData.playing;
+          const nextVisits = gameData.visits;
+          const nextFavorites = gameData.favoritedCount;
+
+          if (playerCount.dataset.target !== String(nextPlaying)) {
+            playerCount.dataset.target = String(nextPlaying);
+            animateCount(playerCount, nextPlaying, 1500);
+          }
+
+          if (visits.dataset.target !== String(nextVisits)) {
+            visits.dataset.target = String(nextVisits);
+            animateCount(visits, nextVisits, 1500);
+          }
+
+          if (favorites.dataset.target !== String(nextFavorites)) {
+            favorites.dataset.target = String(nextFavorites);
+            animateCount(favorites, nextFavorites, 1500);
+          }
         }
       }
     });
@@ -229,6 +274,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   statsIntervalId = setInterval(fetchGameStats, 10000);
 });
-
-
-
