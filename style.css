@@ -117,16 +117,12 @@ header h1 {
   background-image: url("https://tr.rbxcdn.com/180DAY-74f37e645fbba4a51207ee3bef48fdea/768/432/Image/Webp/noFilter");
 }
 
-.game-card-ps99 {
-  background-image: url("https://tr.rbxcdn.com/180DAY-0a1e859b0984859a7a408ea695c8955f/768/432/Image/Webp/noFilter");
-}
-
-.game-card-dr {
-  background-image: url("https://tr.rbxcdn.com/180DAY-da525289338642275e4838a07d685e93/768/432/Image/Webp/noFilter");
-}
-
 .game-card-sab {
   background-image: url("https://tr.rbxcdn.com/180DAY-c020349c01933ac543e8acd349f932d0/768/432/Image/Webp/noFilter");
+}
+
+.game-card-sac {
+  background-image: url("https://i.postimg.cc/Hs1T9PBV/Steal-A-Chicken-Thumbnail-2.png");
 }
 
 .modded-text {
