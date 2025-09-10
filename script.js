@@ -137,9 +137,8 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 const games = {
   "game-card-sab": { universeId: 8626671126 },
+  "game-card-sac": { universeId: 8564865504 },
   "game-card-sap": { universeId: 8122648570 },
-  "game-card-ps99": { universeId: 8167079083 },
-  "game-card-dr": { universeId: 8373331401 },
 };
 
 const activeAnimations = new WeakMap();
@@ -274,4 +273,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   statsIntervalId = setInterval(fetchGameStats, 10000);
 });
-
