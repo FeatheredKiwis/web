@@ -125,6 +125,14 @@ header h1 {
   background-image: url("https://i.postimg.cc/Hs1T9PBV/Steal-A-Chicken-Thumbnail-2.png");
 }
 
+.game-card-99nights {
+  background-image: url("https://tr.rbxcdn.com/180DAY-821d9599ac5c3ebe3ade368489c06110/420/420/Image/Webp/noFilter");
+}
+
+.game-card-pvb {
+  background-image: url("https://tr.rbxcdn.com/180DAY-f7c7a703050a702aef0bb4b78c8d2bfd/420/420/Image/Webp/noFilter");
+}
+
 .modded-text {
   position: absolute;
   width: 120%;
