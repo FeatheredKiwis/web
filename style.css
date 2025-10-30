@@ -133,6 +133,10 @@ header h1 {
   background-image: url("https://tr.rbxcdn.com/180DAY-f7c7a703050a702aef0bb4b78c8d2bfd/420/420/Image/Webp/noFilter");
 }
 
+.game-card-pvbr {
+  background-image: url("https://tr.rbxcdn.com/180DAY-3d8bd77defdd96f6aff051aa99f54776/420/420/Image/Webp/noFilter");
+}
+
 .modded-text {
   position: absolute;
   width: 120%;
@@ -354,4 +358,5 @@ header h1 {
   font-weight: bold;
   text-shadow: 1px 1px 3px black;
 }
+
 
