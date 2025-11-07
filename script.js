@@ -138,7 +138,7 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 const games = {
   "game-card-pvb": { universeId: 9110909880 },
   "game-card-pvbr": { universeId: 9061647145 },
-  "game-card-sab": { universeId: 9047210518 },
+  "game-card-sab": { universeId: 9120961562 },
   "game-card-sac": { universeId: 8564865504 },
   "game-card-sap": { universeId: 8122648570 },
 };
@@ -275,6 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   statsIntervalId = setInterval(fetchGameStats, 10000);
 });
+
 
 
 
